@@ -1,2 +1,2 @@
-# agron5106-group-part1
-Group project part 1
+# agron5106-group-part2
+Group project part 2
