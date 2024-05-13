@@ -1,0 +1,6 @@
+SELECT Id, Title, Tags, DATEDIFF(LastActivityDate,CreationDate) AS total_day , CreationDate, LastActivityDate, ViewCount
+FROM Posts
+WHERE ViewCount IS NOT NULL
+GROUP BY Id
+ORDER BY total_day DESC;
+
