@@ -1,0 +1,8 @@
+WITH acceptance_table AS (SELECT PostTypeId, Title, Tags, ViewCount, AnswerCount, CommentCount, ROUND((AnswerCount/(AnswerCount+CommentCount)),2) AS Acceptance
+FROM Posts)
+SELECT COUNT(*) AS accepted_comment_count, (SELECT SUM(CommentCount)+SUM(AnswerCount) FROM Posts) AS total_comment_count,
+	   COUNT(*)/(SELECT SUM(CommentCount)+SUM(AnswerCount) FROM Posts) AS total_acceptance,
+FROM acceptance_table
+WHERE Acceptance > (SELECT AVG(Acceptance) FROM acceptance_table)
+ORDER BY Acceptance DESC;
+
