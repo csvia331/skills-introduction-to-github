@@ -1,0 +1,5 @@
+SELECT YEAR(CreationDate) AS Year, MONTH(CreationDate) AS Month, COUNT(*) AS number
+FROM Posts
+GROUP BY Year, Month
+ORDER BY Year, Month;
+
