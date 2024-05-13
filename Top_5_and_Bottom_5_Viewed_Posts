@@ -1,0 +1,11 @@
+(SELECT Id, YEAR(CreationDate) AS Year, DATEDIFF(LastActivityDate,CreationDate) AS total_day, Title, ViewCount, Tags, AnswerCount, CommentCount 
+FROM Posts
+ORDER BY ViewCount DESC
+LIMIT 5)
+UNION
+(SELECT Id, YEAR(CreationDate) AS Year, DATEDIFF(LastActivityDate,CreationDate) AS total_day, Title, ViewCount, Tags, AnswerCount, CommentCount 
+FROM Posts
+WHERE ViewCount IS NOT NULL
+ORDER BY ViewCount ASC
+LIMIT 5);
+
