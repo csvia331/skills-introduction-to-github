@@ -1,0 +1,11 @@
+WITH TagCounts AS (
+    SELECT *, YEAR(CreationDate) AS Year, COUNT(*) AS tag_count,
+        ROW_NUMBER() OVER (PARTITION BY YEAR(CreationDate) ORDER BY COUNT(*) DESC) AS RowNum
+    FROM Posts
+    WHERE Tags IS NOT NULL
+    GROUP BY YEAR(CreationDate), Tags
+)
+SELECT Year, Id, Title, Tags, tag_count, Body, ViewCount
+FROM TagCounts
+WHERE RowNum <= 3;
+
