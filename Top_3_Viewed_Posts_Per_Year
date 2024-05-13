@@ -1,0 +1,8 @@
+WITH RankedPosts AS (
+    SELECT *, ROW_NUMBER() OVER (PARTITION BY YEAR(CreationDate) ORDER BY ViewCount DESC) AS RowNum
+    FROM Posts
+)
+SELECT YEAR(CreationDate) AS Year, Id, Title, Tags, Body, ViewCount
+FROM RankedPosts
+WHERE RowNum <= 3;
+
